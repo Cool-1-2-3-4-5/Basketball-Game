@@ -31,6 +31,13 @@ while True:
         tracked_x = int(new_state[0][0])
         tracked_y = int(new_state[1][0])
         cv2.circle(frame, (tracked_x, tracked_y), 10, (0, 255, 0), -1)
+        inRange = True
+        while inRange:
+            kf.predict()
+            new_state = kf.statePost
+            tracked_x = int(new_state[0][0])
+            tracked_y = int(new_state[1][0])
+            cv2.circle(frame, (tracked_x, tracked_y), 10, (0, 255, 0), -1)
     cv2.imshow('Orange Detection', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
